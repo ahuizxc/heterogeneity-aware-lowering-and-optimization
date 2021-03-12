@@ -1637,7 +1637,7 @@ odla_value odla_Gemm(odla_value lhs, odla_bool transpose_lhs, odla_value rhs,
   auto ret_md = getMemoryDesc(output_dims, type);
   auto ret_mem = dnnl::memory(ret_md, g_comp->eng);
   // FIXME: alpha, beta, bias not handled.
-  op = [&]() {
+  op = [=]() {
     int lda = lhs->shape.dims[1], ldb = rhs->shape.dims[1],
         ldc = output_dims.dims[1];
 
